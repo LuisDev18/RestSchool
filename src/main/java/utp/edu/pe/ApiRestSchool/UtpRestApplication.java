@@ -14,8 +14,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 				description="Spring Boot REST API School demo",
 				version="v1.0",
 				contact=@Contact(
-						name="Luis B.",
-						email="brian@orbita.pe",
+						name="Luis B. - Miguel G. - Miguel T. Anthony - Heraud M.",
+						email="developers-students@utp.pe",
 						url="https://github.com/LuisDev18?tab=repositories"
 				),
 				license=@License(
