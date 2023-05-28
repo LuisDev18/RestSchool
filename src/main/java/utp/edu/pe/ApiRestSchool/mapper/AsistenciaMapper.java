@@ -13,5 +13,5 @@ public interface AsistenciaMapper {
     AsistenciaDto mappToDto (Asistencia asistencia);
 
     Asistencia mappToEntity (AsistenciaDto asistenciaDto);
-
+    
 }
