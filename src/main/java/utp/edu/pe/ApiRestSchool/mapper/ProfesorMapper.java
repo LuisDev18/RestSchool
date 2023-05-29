@@ -13,4 +13,6 @@ public interface ProfesorMapper {
     ProfesorDto mappToDto(Profesor profesor);
     Profesor mappToEntity(ProfesorDto profesorDto);
 
+
+
 }
