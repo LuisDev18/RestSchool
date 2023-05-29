@@ -1,5 +1,6 @@
 package utp.edu.pe.ApiRestSchool.entity;
 
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -43,8 +44,10 @@ public class Alumno {
     @NotBlank(message="El elemento genero no puede ser vacio")
     private String genero;
 
+
         /*@NotBlank(message="El elemento fecha de nacimiento no puede ser vacio")
         private Date fechaNac;*/
+
 
     @NotBlank(message="El elemento Padre o Apoderado no puede ser vacio")
     private String padreApoderado;
@@ -61,5 +64,6 @@ public class Alumno {
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date updatedAt;
+
 
 }
