@@ -11,19 +11,8 @@ public interface ProfesorMapper {
     ProfesorMapper MAPPER = Mappers.getMapper(ProfesorMapper.class);
 
     ProfesorDto mappToDto(Profesor profesor);
-    Profesor mappToEntity(ProfesorDto profesorDto);}
-@Override
-    public ProfesorDTO profesorToProfesorDto(Profesor profesorRepository) {
-        if ( profesor == null ) {
-            return null;
-        }
-        ProfesorDTO profesorDTO = new ProfesorDTO();
-        profesorDTO.setNombre( profesor.getNombre() );
-        profesorDTO.setApellidoPaterno( profesor.getApellidoPaterno() );
-        profesorDTO.setApellidoMaterno( profesor.getApellidoMaterno() );
-        profesorDTO.setDni( profesor.getDni() );
-        profesorDTO.setEmail( profesor.getEmail() );
-        profesorDTO.setCurso( profesor.getCurso() );
-        return profesorDTO;
-    }
+
+    Profesor mappToEntity(ProfesorDto profesorDto);
+
+
 }
