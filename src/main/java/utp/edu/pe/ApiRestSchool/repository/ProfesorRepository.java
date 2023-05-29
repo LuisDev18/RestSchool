@@ -9,6 +9,10 @@ import org.springframework.stereotype.Repository;
 import utp.edu.pe.ApiRestSchool.entity.Profesor;
 
 @Repository
-public interface ProfesorRepository extends JpaRepository<Profesor,Integer>{
-	List<Profesor> findByCursoContaining(String nombre, Pageable page);
+public interface ProfesorRepository extends JpaRepository<Profesor,Integer> {
+
+    //Usando Derived Query method
+    List<Profesor> findByNombreContaining(String nombre, Pageable page);
+    Profesor findByNombre(String nombre);
+
 }

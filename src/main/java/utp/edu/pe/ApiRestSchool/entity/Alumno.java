@@ -1,19 +1,23 @@
 package utp.edu.pe.ApiRestSchool.entity;
 
-import utp.edu.pe.ApiRestSchool.entity.Alumno;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import lombok.Data;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.util.Date;
+
+@Builder
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Alumno {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -40,12 +44,26 @@ public class Alumno {
     @NotBlank(message="El elemento genero no puede ser vacio")
     private String genero;
 
-    /*@NotBlank(message="El elemento fecha de nacimiento no puede ser vacio")
-    private Date fechaNac;*/
+
+        /*@NotBlank(message="El elemento fecha de nacimiento no puede ser vacio")
+        private Date fechaNac;*/
+
 
     @NotBlank(message="El elemento Padre o Apoderado no puede ser vacio")
     private String padreApoderado;
 
     @NotBlank(message="El elemento direccion no puede ser vacio")
     private String direccion;
+
+    @Column(name="created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    private Date createdAt;
+
+    @Column(name="updated_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    @LastModifiedDate
+    private Date updatedAt;
+
+
 }
