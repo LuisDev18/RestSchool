@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,7 +58,7 @@ public class AsistenciaController {
 	}
 
 	@PostMapping()
-	public ResponseEntity<AsistenciaDto> saveAsistencia(@RequestBody AsistenciaDto asistenciaDto) {
+	public ResponseEntity<AsistenciaDto> saveAsistencia(@Valid @RequestBody AsistenciaDto asistenciaDto) {
 		Asistencia registro = service.saveAsistencia(AsistenciaMapper.MAPPER.mappToEntity(asistenciaDto));
 		AsistenciaDto registroDto=AsistenciaMapper.MAPPER.mappToDto(registro);
 		
@@ -70,8 +71,8 @@ public class AsistenciaController {
 	}
 
 	@PutMapping(value = "/{idAsistencia}")
-	public ResponseEntity<AsistenciaDto> updateAsistencia(@PathVariable("idAsistencia") int idAsistencia,
-			@RequestBody AsistenciaDto asistenciaDto) {
+	public ResponseEntity<AsistenciaDto> updateAsistencia( @PathVariable("idAsistencia") int idAsistencia,
+														   @Valid @RequestBody AsistenciaDto asistenciaDto) {
 		Asistencia registro = service.updateAsistencia(AsistenciaMapper.MAPPER.mappToEntity(asistenciaDto));
 		AsistenciaDto registroDto=AsistenciaMapper.MAPPER.mappToDto(registro);
 		

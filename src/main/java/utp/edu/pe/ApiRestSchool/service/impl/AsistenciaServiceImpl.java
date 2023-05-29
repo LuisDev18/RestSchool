@@ -25,7 +25,6 @@ public class AsistenciaServiceImpl implements AsistenciaService {
 	@Transactional(readOnly = true)
 	public List<Asistencia> findByEstudiante(int idEstudiante) {
 		try {
-			
 			List<Asistencia> registros=repository.findByIdEstudiante(idEstudiante);			
 			return registros;
 		}catch(ResourceNotFoundException e){
@@ -41,24 +40,20 @@ public class AsistenciaServiceImpl implements AsistenciaService {
 	@Override
 	@Transactional(readOnly = true)
 	public Asistencia findByIdAsistencia(int idAsistencia) {
-		try {
-			Asistencia registro = repository.findById(idAsistencia).orElseThrow(()-> new ResourceNotFoundException("Asistencia","idAsistencia",Long.valueOf(idAsistencia)));			
+
+			Asistencia registro = repository.findById(idAsistencia).orElseThrow(()->
+					new ResourceNotFoundException("Asistencia","idAsistencia",Long.valueOf(idAsistencia)));
 			return registro;
-		} catch (Exception e) {
-			return null;
-		}
+
 	}
 
 	@Override
 	@Transactional
 	public Asistencia saveAsistencia(Asistencia asistencia) {
-		try {
+
 			Asistencia registro =repository.save(asistencia);			
 			return registro;
 
-		} catch (Exception e) {
-			return null;
-		}
 	}
 
 	@Override
