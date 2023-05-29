@@ -1,6 +1,7 @@
 package utp.edu.pe.ApiRestSchool.controller;
 
 import jakarta.persistence.Id;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 
 
 @RestController
-@RequestMapping("/v1/alumnos")
+@RequestMapping("api/v1/alumnos")
 public class AlumnoController {
 
     @Autowired
@@ -45,25 +46,24 @@ public class AlumnoController {
         if (registroDto==null) map.put("message", "No data found"); else map.put("message", "Success");
         map.put("status", HttpStatus.OK);
         map.put("data", registroDto);
-        //return new ResponseEntity(registroDto,HttpStatus.OK);
         return new ResponseEntity(map,HttpStatus.OK);
     }
 
     @PostMapping()
-    public ResponseEntity<AlumnoDto> create(@RequestBody AlumnoDto alumnoDto) {
+    public ResponseEntity<AlumnoDto> create(@Valid @RequestBody AlumnoDto alumnoDto) {
         Alumno registro = service.save(AlumnoMapper.MAPPER.mappToEntity(alumnoDto));
         AlumnoDto registroDto=AlumnoMapper.MAPPER.mappToDto(registro);
 
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("message", "Success");
-        map.put("status", HttpStatus.OK);
+        map.put("status", HttpStatus.CREATED);
         map.put("data", registroDto);
         //return ResponseEntity.status(HttpStatus.CREATED).body(registroDto);
         return new ResponseEntity(map,HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<AlumnoDto> update(@PathVariable("id") int id, @RequestBody AlumnoDto alumnoDto) {
+    public ResponseEntity<AlumnoDto> update(@PathVariable("id") int id,@Valid @RequestBody AlumnoDto alumnoDto) {
         Alumno registro = service.update(AlumnoMapper.MAPPER.mappToEntity(alumnoDto));
         AlumnoDto registroDto=AlumnoMapper.MAPPER.mappToDto(registro);
 

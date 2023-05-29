@@ -24,7 +24,7 @@ import utp.edu.pe.ApiRestSchool.mapper.AsistenciaMapper;
 import utp.edu.pe.ApiRestSchool.service.AsistenciaService;
 
 @RestController
-@RequestMapping("/v1/asistencia")
+@RequestMapping("api/v1/asistencia")
 public class AsistenciaController {
 	@Autowired
 	private AsistenciaService service;	
