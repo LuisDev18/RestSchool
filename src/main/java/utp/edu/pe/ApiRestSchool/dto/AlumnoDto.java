@@ -3,10 +3,9 @@ package utp.edu.pe.ApiRestSchool.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+@Builder
 
 @Setter
 @Getter
@@ -16,6 +15,7 @@ public class AlumnoDto {
 
 
     private Integer id;
+
 
     @NotBlank(message="El elemento nombre no puede ser vacio")
     private String nombre;
@@ -43,6 +43,7 @@ public class AlumnoDto {
     private String padreApoderado;
 
     @NotBlank(message="El elemento direccion no puede ser vacio")
+
     private String direccion;
 
 }
