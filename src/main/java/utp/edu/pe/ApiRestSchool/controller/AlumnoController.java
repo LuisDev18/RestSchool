@@ -1,5 +1,8 @@
 package utp.edu.pe.ApiRestSchool.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.Id;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 
+@Tag(
+        name="CRUD API REST para el modulo Alumnos",
+        description = "CRUD REST API - Create Alumno, Update Alumno, Get Alumno, Get all Alumno, Delete Alumno"
+)
 @RestController
 @RequestMapping("api/v1/alumnos")
 public class AlumnoController {
@@ -25,7 +32,15 @@ public class AlumnoController {
     @Autowired
     private AlumnoService service;
 
-    @GetMapping
+    @Operation(
+            summary = "Listar Alumnos - API REST",
+            description="Permite listar un conjunto de alumnos "
+    )
+    @ApiResponse(
+            responseCode="200",
+            description = "HTTP STATUS 200 SUCCESS"
+    )
+    @GetMapping(produces="application/json")
     public ResponseEntity<Object> findAll() {
         List<AlumnoDto> alumnosDto = service.findAll().stream().map(AlumnoMapper.MAPPER::mappToDto).toList();
         Map<String, Object> map = new HashMap<String, Object>();
@@ -37,7 +52,15 @@ public class AlumnoController {
         return new ResponseEntity<>(map,HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{id}")
+    @Operation(
+            summary = "Buscar Alumno por ID - API REST",
+            description="Permite buscar un alumnor por ID en la base de datos"
+    )
+    @ApiResponse(
+            responseCode="200",
+            description = "HTTP STATUS 200 SUCCESS"
+    )
+    @GetMapping(value = "/{id}",produces="application/json")
     public ResponseEntity<WrapperResponse<AlumnoDto>> findById(@PathVariable("id") int id) {
         Alumno registro = service.findById(id);
         AlumnoDto registroDto=AlumnoMapper.MAPPER.mappToDto(registro);
@@ -49,7 +72,15 @@ public class AlumnoController {
         return new ResponseEntity(map,HttpStatus.OK);
     }
 
-    @PostMapping()
+    @Operation(
+            summary = "Crear Alumno - API REST",
+            description="Permite registrar una nuevo alumno en la base de datos"
+    )
+    @ApiResponse(
+            responseCode="201",
+            description = "HTTP STATUS 201 CREATED"
+    )
+    @PostMapping(produces="application/json")
     public ResponseEntity<AlumnoDto> create(@Valid @RequestBody AlumnoDto alumnoDto) {
         Alumno registro = service.save(AlumnoMapper.MAPPER.mappToEntity(alumnoDto));
         AlumnoDto registroDto=AlumnoMapper.MAPPER.mappToDto(registro);
@@ -62,7 +93,15 @@ public class AlumnoController {
         return new ResponseEntity(map,HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/{id}")
+    @Operation(
+            summary = "Actualizar Alumno - API REST",
+            description="Permite actualizar los datos de un alumno"
+    )
+    @ApiResponse(
+            responseCode="200",
+            description = "HTTP STATUS 200 SUCCESS"
+    )
+    @PutMapping(value = "/{id}",produces="application/json")
     public ResponseEntity<AlumnoDto> update(@PathVariable("id") int id,@Valid @RequestBody AlumnoDto alumnoDto) {
         Alumno registro = service.update(AlumnoMapper.MAPPER.mappToEntity(alumnoDto));
         AlumnoDto registroDto=AlumnoMapper.MAPPER.mappToDto(registro);
@@ -75,6 +114,14 @@ public class AlumnoController {
         return new ResponseEntity(map,HttpStatus.OK);
     }
 
+    @Operation(
+            summary = "Delete Alumno REST API",
+            description="Delete Alumno es usado para eliminar un registro de alumno de la base de datos"
+    )
+    @ApiResponse(
+            responseCode="200",
+            description = "HTTP STATUS 200 SUCCESS"
+    )
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Alumno> delete(@PathVariable("id") int id) {
         service.delete(id);
