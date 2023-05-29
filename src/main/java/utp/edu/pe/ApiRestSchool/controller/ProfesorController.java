@@ -1,5 +1,7 @@
 package utp.edu.pe.ApiRestSchool.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.boot.actuate.autoconfigure.observation.ObservationProperties;
@@ -28,7 +30,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Tag(
-        name="CRUD REST API para el modulo Profesor ",
+        name="CRUD API REST para el modulo Profesor ",
         description = "CRUD REST API - Create Profesor, Update Profesor, Get Profesor, Get all Profesor, Delete Profesor"
 )
 @RestController
@@ -37,9 +39,16 @@ public class ProfesorController {
 
     @Autowired
 	private ProfesorService service;
-	
 
-	
+
+	@Operation(
+			summary = "Listar Profesores - API REST",
+			description="Permite listar un conjunto de profesores "
+	)
+	@ApiResponse(
+			responseCode="200",
+			description = "HTTP STATUS 200 SUCCESS"
+	)
 	@GetMapping
 	public ResponseEntity<List<ProfesorDto>> findAll(
 			@RequestParam(value="nombre", required = false, defaultValue = "") String nombre,
@@ -60,7 +69,16 @@ public class ProfesorController {
 				return ResponseEntity.ok(profesorDto);
 
 			}
-	@GetMapping(value="/{id}")
+
+	@Operation(
+			summary = "Buscar Profesor por ID - API REST",
+			description="Permite buscar un profesor por ID en la base de datos"
+	)
+	@ApiResponse(
+			responseCode="200",
+			description = "HTTP STATUS 200 SUCCESS"
+	)
+	@GetMapping(value="/{id}",produces="application/json")
 	public ResponseEntity<ProfesorDto> findById(@PathVariable("id") int id){
 		Profesor profesor=service.findById(id);
 
@@ -68,12 +86,29 @@ public class ProfesorController {
 		return ResponseEntity.ok(registroDto);
 	}
 
-	@PostMapping
+	@Operation(
+			summary = "Crear Profesor - API REST",
+			description="Permite aregar un nuevo profesor en la base de datos"
+	)
+	@ApiResponse(
+			responseCode="201",
+			description = "HTTP STATUS 201 CREATED"
+	)
+	@PostMapping(produces="application/json")
 	public ResponseEntity<ProfesorDto> create(@Valid @RequestBody ProfesorDto profesorDto){
 		Profesor registro=service.save(ProfesorMapper.MAPPER.mappToEntity(profesorDto));
 		ProfesorDto profesorCreado=ProfesorMapper.MAPPER.mappToDto(registro);
 		return new ResponseEntity<>(profesorCreado,HttpStatus.CREATED);
 	}
+
+	@Operation(
+			summary = "Actualizar Profesor - API REST",
+			description="Permite actualizar los datos de un profesor"
+	)
+	@ApiResponse(
+			responseCode="200",
+			description = "HTTP STATUS 200 SUCCESS"
+	)
 	@PutMapping(value="/{id}")
 	public ResponseEntity<ProfesorDto> update(@PathVariable("id") int id,@Valid @RequestBody ProfesorDto profesorDto){
 
@@ -84,6 +119,14 @@ public class ProfesorController {
 
 	}
 
+	@Operation(
+			summary = "Eliminar Profesor -API REST",
+			description="Permite eliminar un profesor de la base de datos"
+	)
+	@ApiResponse(
+			responseCode="200",
+			description = "HTTP STATUS 200 CREATED"
+	)
 	@DeleteMapping(value="/{id}")
 	public ResponseEntity<String> delete(@PathVariable("id") int id){
 		service.delete(id);

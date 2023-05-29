@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +26,10 @@ import utp.edu.pe.ApiRestSchool.entity.Asistencia;
 import utp.edu.pe.ApiRestSchool.mapper.AsistenciaMapper;
 import utp.edu.pe.ApiRestSchool.service.AsistenciaService;
 
+@Tag(
+		name="CRUD API REST para el modulo Asistencia ",
+		description = "CRUD REST API - Create Asistencia, Update Asistencia, Get Asistencia, Get all Asistencias, Delete Asistencia"
+)
 @RestController
 @RequestMapping("api/v1/asistencia")
 public class AsistenciaController {
@@ -44,7 +51,7 @@ public class AsistenciaController {
         return new ResponseEntity<Object>(map,HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/{idAsistencia}")
+	@GetMapping(value = "/{idAsistencia}",produces = "application/json")
 	public ResponseEntity<AsistenciaDto> findByIdAsistencia(@PathVariable("idAsistencia") int idAsistencia) {
 		Asistencia registro = service.findByIdAsistencia(idAsistencia);
 		AsistenciaDto registroDto=AsistenciaMapper.MAPPER.mappToDto(registro);
@@ -57,7 +64,15 @@ public class AsistenciaController {
         return new ResponseEntity(map,HttpStatus.OK);
 	}
 
-	@PostMapping()
+	@Operation(
+			summary = "Crear Asistencia - API REST",
+			description="Permite registrar una nueva asistencia en la base de datos"
+	)
+	@ApiResponse(
+			responseCode="201",
+			description = "HTTP STATUS 201 CREATED"
+	)
+	@PostMapping(produces="application/json")
 	public ResponseEntity<AsistenciaDto> saveAsistencia(@Valid @RequestBody AsistenciaDto asistenciaDto) {
 		Asistencia registro = service.saveAsistencia(AsistenciaMapper.MAPPER.mappToEntity(asistenciaDto));
 		AsistenciaDto registroDto=AsistenciaMapper.MAPPER.mappToDto(registro);
@@ -70,7 +85,15 @@ public class AsistenciaController {
         return new ResponseEntity(map,HttpStatus.CREATED);
 	}
 
-	@PutMapping(value = "/{idAsistencia}")
+	@Operation(
+			summary = "Actualizar Asistencia - API REST",
+			description="Permite actualizar los datos de una asistencia"
+	)
+	@ApiResponse(
+			responseCode="200",
+			description = "HTTP STATUS 200 SUCCESS"
+	)
+	@PutMapping(value = "/{idAsistencia}",produces="application/json")
 	public ResponseEntity<AsistenciaDto> updateAsistencia( @PathVariable("idAsistencia") int idAsistencia,
 														   @Valid @RequestBody AsistenciaDto asistenciaDto) {
 		Asistencia registro = service.updateAsistencia(AsistenciaMapper.MAPPER.mappToEntity(asistenciaDto));
@@ -84,6 +107,15 @@ public class AsistenciaController {
         return new ResponseEntity(map,HttpStatus.OK);
 		//return new ResponseEntity(registroDto,HttpStatus.OK);
 	}
+
+	@Operation(
+			summary = "Delete Asistencia REST API",
+			description="Delete Asistencia es usado para eliminar un registro de asistencia de la base de datos"
+	)
+	@ApiResponse(
+			responseCode="200",
+			description = "HTTP STATUS 200 SUCCESS"
+	)
 
 	@DeleteMapping(value = "/{idAsistencia}")
 	public ResponseEntity<Asistencia> deleteAsistencia(@PathVariable("idAsistencia") int idAsistencia) {
