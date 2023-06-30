@@ -1,7 +1,7 @@
 package utp.edu.pe.apirestschool.dto;
 
-import java.util.Date;
 import jakarta.validation.constraints.NotBlank;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
