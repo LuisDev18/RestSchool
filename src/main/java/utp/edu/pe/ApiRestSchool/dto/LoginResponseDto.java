@@ -1,3 +1,4 @@
+
 package utp.edu.pe.ApiRestSchool.dto;
 
 import lombok.AllArgsConstructor;
@@ -13,4 +14,5 @@ public class LoginResponseDto {
     private UsuarioResponseDto usuario;
     private String token;
     private String refreshToken;
+
 }

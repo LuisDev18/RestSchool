@@ -1,3 +1,4 @@
+
 package utp.edu.pe.ApiRestSchool.service;
 
 import org.springframework.data.domain.Pageable;
@@ -15,4 +16,5 @@ public interface UsuarioService {
     public Usuario save(Usuario usuario);
     public void delete(int id);
     public LoginResponseDto login(LoginRequestDto loginRequestDto);
+
 }
