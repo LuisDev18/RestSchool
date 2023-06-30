@@ -9,10 +9,10 @@ import utp.edu.pe.apirestschool.entity.Profesor;
 import utp.edu.pe.apirestschool.exception.EmailAlreadyExistsException;
 import utp.edu.pe.apirestschool.exception.ResourceNotFoundException;
 import utp.edu.pe.apirestschool.repository.ProfesorRepository;
-import utp.edu.pe.apirestschool.service.ProfesorService;
-
 import java.util.List;
 import java.util.Optional;
+import utp.edu.pe.apirestschool.service.ProfesorService;
+
 
 @Service
 @Slf4j

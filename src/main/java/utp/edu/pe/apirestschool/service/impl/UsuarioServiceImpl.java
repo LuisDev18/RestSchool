@@ -18,9 +18,9 @@ import utp.edu.pe.apirestschool.exception.userexception.ValidateServiceException
 import utp.edu.pe.apirestschool.mapper.UsuarioMapper;
 import utp.edu.pe.apirestschool.repository.UsuarioRepository;
 import utp.edu.pe.apirestschool.security.JWTService;
-import utp.edu.pe.apirestschool.service.UsuarioService;
 import java.util.List;
 import java.util.Optional;
+import utp.edu.pe.apirestschool.service.UsuarioService;
 import utp.edu.pe.apirestschool.validator.UsuarioValidator;
 
 
