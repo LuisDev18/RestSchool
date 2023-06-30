@@ -8,11 +8,9 @@ import utp.edu.pe.apirestschool.entity.Profesor;
 @Mapper
 public interface ProfesorMapper {
 
-    ProfesorMapper MAPPER = Mappers.getMapper(ProfesorMapper.class);
+  ProfesorMapper MAPPER = Mappers.getMapper(ProfesorMapper.class);
 
-    ProfesorDto mappToDto(Profesor profesor);
+  ProfesorDto mappToDto(Profesor profesor);
 
-    Profesor mappToEntity(ProfesorDto profesorDto);
-
-
+  Profesor mappToEntity(ProfesorDto profesorDto);
 }

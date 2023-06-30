@@ -9,7 +9,5 @@ import utp.edu.pe.apirestschool.entity.Asistencia;
 
 @Repository
 public interface AsistenciaRepository extends JpaRepository<Asistencia, Integer> {
-	List<Asistencia> findByIdEstudiante(int idEstudiante);
-
+  List<Asistencia> findByIdEstudiante(int idEstudiante);
 }
-

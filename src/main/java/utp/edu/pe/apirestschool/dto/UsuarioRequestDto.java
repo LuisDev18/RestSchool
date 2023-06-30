@@ -1,4 +1,3 @@
-
 package utp.edu.pe.apirestschool.dto;
 
 import lombok.AllArgsConstructor;
@@ -13,8 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 public class UsuarioRequestDto {
-    private String email;
-    private String password;
-    private String rol;
-
+  private String email;
+  private String password;
+  private String rol;
 }

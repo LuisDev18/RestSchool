@@ -27,105 +27,102 @@ import utp.edu.pe.apirestschool.mapper.AsistenciaMapper;
 import utp.edu.pe.apirestschool.service.AsistenciaService;
 
 @Tag(
-		name="CRUD API REST para el modulo Asistencia ",
-		description = "CRUD REST API - Create Asistencia, Update Asistencia, Get Asistencia, Get all Asistencias, Delete Asistencia"
-)
+    name = "CRUD API REST para el modulo Asistencia ",
+    description =
+        "CRUD REST API - Create Asistencia, Update Asistencia, Get Asistencia, Get all Asistencias, Delete Asistencia")
 @RestController
 @RequestMapping("api/v1/asistencia")
 public class AsistenciaController {
-	@Autowired
-	private AsistenciaService service;	
+  @Autowired private AsistenciaService service;
 
-	@GetMapping(value = "byEstudiante/{idEstudiante}")
-	public ResponseEntity<Object> findByEstudiante(@PathVariable("idEstudiante") int idEstudiante) {
-		List<Asistencia> asistencias = service.findByEstudiante(idEstudiante);
-		List<AsistenciaDto> asistenciasDto = asistencias.stream().map(
-				(asistencia)->AsistenciaMapper.MAPPER.mappToDto(asistencia)).collect(Collectors.toList());
-		
-        Map<String, Object> map = new HashMap<String, Object>();        
-        if (asistenciasDto.toArray().length==0) map.put("message", "No data found"); else map.put("message", "Success");
-        map.put("status", HttpStatus.OK);
-        map.put("data", asistenciasDto);
-		//return new ResponseEntity(asistenciasDto,HttpStatus.OK);        
+  @GetMapping(value = "byEstudiante/{idEstudiante}")
+  public ResponseEntity<Object> findByEstudiante(@PathVariable("idEstudiante") int idEstudiante) {
+    List<Asistencia> asistencias = service.findByEstudiante(idEstudiante);
+    List<AsistenciaDto> asistenciasDto =
+        asistencias.stream()
+            .map((asistencia) -> AsistenciaMapper.MAPPER.mappToDto(asistencia))
+            .collect(Collectors.toList());
 
-        return new ResponseEntity<Object>(map,HttpStatus.OK);
-	}
+    Map<String, Object> map = new HashMap<String, Object>();
+    if (asistenciasDto.toArray().length == 0) map.put("message", "No data found");
+    else map.put("message", "Success");
+    map.put("status", HttpStatus.OK);
+    map.put("data", asistenciasDto);
+    // return new ResponseEntity(asistenciasDto,HttpStatus.OK);
 
-	@GetMapping(value = "/{idAsistencia}",produces = "application/json")
-	public ResponseEntity<AsistenciaDto> findByIdAsistencia(@PathVariable("idAsistencia") int idAsistencia) {
-		Asistencia registro = service.findByIdAsistencia(idAsistencia);
-		AsistenciaDto registroDto=AsistenciaMapper.MAPPER.mappToDto(registro);
-		
-        Map<String, Object> map = new HashMap<String, Object>();        
-        if (registroDto==null) map.put("message", "No data found"); else map.put("message", "Success");
-        map.put("status", HttpStatus.OK);
-        map.put("data", registroDto);
-		//return new ResponseEntity(registroDto,HttpStatus.OK);
-        return new ResponseEntity(map,HttpStatus.OK);
-	}
+    return new ResponseEntity<Object>(map, HttpStatus.OK);
+  }
 
-	@Operation(
-			summary = "Crear Asistencia - API REST",
-			description="Permite registrar una nueva asistencia en la base de datos"
-	)
-	@ApiResponse(
-			responseCode="201",
-			description = "HTTP STATUS 201 CREATED"
-	)
-	@PostMapping(produces="application/json")
-	public ResponseEntity<AsistenciaDto> saveAsistencia(@Valid @RequestBody AsistenciaDto asistenciaDto) {
-		Asistencia registro = service.saveAsistencia(AsistenciaMapper.MAPPER.mappToEntity(asistenciaDto));
-		AsistenciaDto registroDto=AsistenciaMapper.MAPPER.mappToDto(registro);
-		
-        Map<String, Object> map = new HashMap<String, Object>();        
-        map.put("message", "Success");
-        map.put("status", HttpStatus.OK);
-        map.put("data", registroDto);
-		//return ResponseEntity.status(HttpStatus.CREATED).body(registroDto);
-        return new ResponseEntity(map,HttpStatus.CREATED);
-	}
+  @GetMapping(value = "/{idAsistencia}", produces = "application/json")
+  public ResponseEntity<AsistenciaDto> findByIdAsistencia(
+      @PathVariable("idAsistencia") int idAsistencia) {
+    Asistencia registro = service.findByIdAsistencia(idAsistencia);
+    AsistenciaDto registroDto = AsistenciaMapper.MAPPER.mappToDto(registro);
 
-	@Operation(
-			summary = "Actualizar Asistencia - API REST",
-			description="Permite actualizar los datos de una asistencia"
-	)
-	@ApiResponse(
-			responseCode="200",
-			description = "HTTP STATUS 200 SUCCESS"
-	)
-	@PutMapping(value = "/{idAsistencia}",produces="application/json")
-	public ResponseEntity<AsistenciaDto> updateAsistencia( @PathVariable("idAsistencia") int idAsistencia,
-														   @Valid @RequestBody AsistenciaDto asistenciaDto) {
-		Asistencia registro = service.updateAsistencia(AsistenciaMapper.MAPPER.mappToEntity(asistenciaDto));
-		AsistenciaDto registroDto=AsistenciaMapper.MAPPER.mappToDto(registro);
-		
-        Map<String, Object> map = new HashMap<String, Object>();        
-        map.put("message", "Success");
-        map.put("status", HttpStatus.OK);
-        map.put("data", registroDto);
-        
-        return new ResponseEntity(map,HttpStatus.OK);
-		//return new ResponseEntity(registroDto,HttpStatus.OK);
-	}
+    Map<String, Object> map = new HashMap<String, Object>();
+    if (registroDto == null) map.put("message", "No data found");
+    else map.put("message", "Success");
+    map.put("status", HttpStatus.OK);
+    map.put("data", registroDto);
+    // return new ResponseEntity(registroDto,HttpStatus.OK);
+    return new ResponseEntity(map, HttpStatus.OK);
+  }
 
-	@Operation(
-			summary = "Delete Asistencia REST API",
-			description="Delete Asistencia es usado para eliminar un registro de asistencia de la base de datos"
-	)
-	@ApiResponse(
-			responseCode="200",
-			description = "HTTP STATUS 200 SUCCESS"
-	)
+  @Operation(
+      summary = "Crear Asistencia - API REST",
+      description = "Permite registrar una nueva asistencia en la base de datos")
+  @ApiResponse(responseCode = "201", description = "HTTP STATUS 201 CREATED")
+  @PostMapping(produces = "application/json")
+  public ResponseEntity<AsistenciaDto> saveAsistencia(
+      @Valid @RequestBody AsistenciaDto asistenciaDto) {
+    Asistencia registro =
+        service.saveAsistencia(AsistenciaMapper.MAPPER.mappToEntity(asistenciaDto));
+    AsistenciaDto registroDto = AsistenciaMapper.MAPPER.mappToDto(registro);
 
-	@DeleteMapping(value = "/{idAsistencia}")
-	public ResponseEntity<Asistencia> deleteAsistencia(@PathVariable("idAsistencia") int idAsistencia) {
-		service.deleteAsistencia(idAsistencia);
-		
-        Map<String, Object> map = new HashMap<String, Object>();        
-        map.put("message", "Success");
-        map.put("status", HttpStatus.OK);
-        map.put("data", null);
-        return new ResponseEntity(map,HttpStatus.OK);
-		//return new ResponseEntity(null,HttpStatus.OK);
-	}
+    Map<String, Object> map = new HashMap<String, Object>();
+    map.put("message", "Success");
+    map.put("status", HttpStatus.OK);
+    map.put("data", registroDto);
+    // return ResponseEntity.status(HttpStatus.CREATED).body(registroDto);
+    return new ResponseEntity(map, HttpStatus.CREATED);
+  }
+
+  @Operation(
+      summary = "Actualizar Asistencia - API REST",
+      description = "Permite actualizar los datos de una asistencia")
+  @ApiResponse(responseCode = "200", description = "HTTP STATUS 200 SUCCESS")
+  @PutMapping(value = "/{idAsistencia}", produces = "application/json")
+  public ResponseEntity<AsistenciaDto> updateAsistencia(
+      @PathVariable("idAsistencia") int idAsistencia,
+      @Valid @RequestBody AsistenciaDto asistenciaDto) {
+    Asistencia registro =
+        service.updateAsistencia(AsistenciaMapper.MAPPER.mappToEntity(asistenciaDto));
+    AsistenciaDto registroDto = AsistenciaMapper.MAPPER.mappToDto(registro);
+
+    Map<String, Object> map = new HashMap<String, Object>();
+    map.put("message", "Success");
+    map.put("status", HttpStatus.OK);
+    map.put("data", registroDto);
+
+    return new ResponseEntity(map, HttpStatus.OK);
+    // return new ResponseEntity(registroDto,HttpStatus.OK);
+  }
+
+  @Operation(
+      summary = "Delete Asistencia REST API",
+      description =
+          "Delete Asistencia es usado para eliminar un registro de asistencia de la base de datos")
+  @ApiResponse(responseCode = "200", description = "HTTP STATUS 200 SUCCESS")
+  @DeleteMapping(value = "/{idAsistencia}")
+  public ResponseEntity<Asistencia> deleteAsistencia(
+      @PathVariable("idAsistencia") int idAsistencia) {
+    service.deleteAsistencia(idAsistencia);
+
+    Map<String, Object> map = new HashMap<String, Object>();
+    map.put("message", "Success");
+    map.put("status", HttpStatus.OK);
+    map.put("data", null);
+    return new ResponseEntity(map, HttpStatus.OK);
+    // return new ResponseEntity(null,HttpStatus.OK);
+  }
 }

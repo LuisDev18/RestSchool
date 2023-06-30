@@ -9,9 +9,9 @@ import java.util.Optional;
 
 public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
 
-    List<Alumno> findByNombreContaining(String nombre, Pageable page);
-    Alumno findByNombre(String nombre);
+  List<Alumno> findByNombreContaining(String nombre, Pageable page);
 
-    Optional<Alumno> findByEmail(String email);
+  Alumno findByNombre(String nombre);
 
+  Optional<Alumno> findByEmail(String email);
 }

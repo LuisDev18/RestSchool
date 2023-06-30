@@ -7,10 +7,9 @@ import utp.edu.pe.apirestschool.entity.Alumno;
 
 @Mapper
 public interface AlumnoMapper {
-    AlumnoMapper MAPPER = Mappers.getMapper(AlumnoMapper.class);
+  AlumnoMapper MAPPER = Mappers.getMapper(AlumnoMapper.class);
 
-    AlumnoDto mappToDto(Alumno alumno);
+  AlumnoDto mappToDto(Alumno alumno);
 
-    Alumno mappToEntity(AlumnoDto alumnoDto);
-
+  Alumno mappToEntity(AlumnoDto alumnoDto);
 }

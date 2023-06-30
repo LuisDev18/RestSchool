@@ -8,9 +8,9 @@ import utp.edu.pe.apirestschool.entity.Asistencia;
 @Mapper
 public interface AsistenciaMapper {
 
-    AsistenciaMapper MAPPER = Mappers.getMapper(AsistenciaMapper.class);
+  AsistenciaMapper MAPPER = Mappers.getMapper(AsistenciaMapper.class);
 
-    AsistenciaDto mappToDto (Asistencia asistencia);
+  AsistenciaDto mappToDto(Asistencia asistencia);
 
-    Asistencia mappToEntity (AsistenciaDto asistenciaDto);
+  Asistencia mappToEntity(AsistenciaDto asistenciaDto);
 }

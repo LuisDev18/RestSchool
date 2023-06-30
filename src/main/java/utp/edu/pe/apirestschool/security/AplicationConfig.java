@@ -17,38 +17,41 @@ import utp.edu.pe.apirestschool.repository.UsuarioRepository;
 @RequiredArgsConstructor
 public class AplicationConfig {
 
+  private final UsuarioRepository repository;
 
-    private final UsuarioRepository repository;
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return username -> repository.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-    }
+  @Bean
+  public UserDetailsService userDetailsService() {
+    return username ->
+        repository
+            .findByEmail(username)
+            .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+  }
 
-    //Metodo se utiliza para configurar el proveedor de autenticacion, quien
-    //es responsable de definir la logica de autenticacion de los usuarios y verificar sus credenciales.
-    //generar un objeto Authentication que representa al usuario
-    //autenticado.
-    @Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder());
-        return authProvider;
-    }
+  // Metodo se utiliza para configurar el proveedor de autenticacion, quien
+  // es responsable de definir la logica de autenticacion de los usuarios y verificar sus
+  // credenciales.
+  // generar un objeto Authentication que representa al usuario
+  // autenticado.
+  @Bean
+  public AuthenticationProvider authenticationProvider() {
+    DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+    authProvider.setUserDetailsService(userDetailsService());
+    authProvider.setPasswordEncoder(passwordEncoder());
+    return authProvider;
+  }
 
-    /*Este metodo es usado por spring security para analizar el tipo de autenticacion requerida
-    y de delegar al authenticationProvider que pueda manejar el tipo de autenticacion que se esta dando
-    jwt,nombre y contraseña, LDAP, etc.
-    */
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
-    }
+  /*Este metodo es usado por spring security para analizar el tipo de autenticacion requerida
+  y de delegar al authenticationProvider que pueda manejar el tipo de autenticacion que se esta dando
+  jwt,nombre y contraseña, LDAP, etc.
+  */
+  @Bean
+  public AuthenticationManager authenticationManager(AuthenticationConfiguration config)
+      throws Exception {
+    return config.getAuthenticationManager();
+  }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2B);
-    }
-
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2B);
+  }
 }

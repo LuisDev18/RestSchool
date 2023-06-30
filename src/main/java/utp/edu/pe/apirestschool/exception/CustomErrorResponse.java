@@ -13,8 +13,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class CustomErrorResponse {
 
-    private LocalDateTime timestamp;
-    private String message;
-    private String path;
-    private String errorCode;
+  private LocalDateTime timestamp;
+  private String message;
+  private String path;
+  private String errorCode;
 }

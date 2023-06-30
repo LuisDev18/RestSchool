@@ -1,4 +1,3 @@
-
 package utp.edu.pe.apirestschool.dto;
 
 import lombok.AllArgsConstructor;
@@ -11,8 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LoginResponseDto {
-    private UsuarioResponseDto usuario;
-    private String token;
-    private String refreshToken;
-
+  private UsuarioResponseDto usuario;
+  private String token;
+  private String refreshToken;
 }

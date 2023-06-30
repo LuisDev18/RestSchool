@@ -1,4 +1,3 @@
-
 package utp.edu.pe.apirestschool.controller;
 
 import lombok.RequiredArgsConstructor;
@@ -30,52 +29,55 @@ import java.util.List;
 @RequestMapping("/v1/usuarios")
 @RequiredArgsConstructor
 public class UsuarioController {
-    private final UsuarioService usuarioService;
-    private final UsuarioMapper mapper;
+  private final UsuarioService usuarioService;
+  private final UsuarioMapper mapper;
 
-    @GetMapping()
-    public ResponseEntity<List<UsuarioResponseDto>> findAll(
-            @RequestParam(value="email", required=false) String email,
-            @RequestParam(value="offset",required=false, defaultValue = "0") int pageNumber,
-            @RequestParam(value="limit",required=false, defaultValue = "5") int pageSize){
+  @GetMapping()
+  public ResponseEntity<List<UsuarioResponseDto>> findAll(
+      @RequestParam(value = "email", required = false) String email,
+      @RequestParam(value = "offset", required = false, defaultValue = "0") int pageNumber,
+      @RequestParam(value = "limit", required = false, defaultValue = "5") int pageSize) {
 
-        Pageable pagina= PageRequest.of(pageNumber, pageSize);
-        List<Usuario> registros;
-        if(email==null) {
-            registros=usuarioService.findAll(pagina);
-        }else {
-            registros=usuarioService.findByEmail(email, pagina);
-        }
-        List<UsuarioResponseDto> registrosDTO=mapper.fromEntity(registros);
-
-        return new WrapperResponse(true,"success",registrosDTO).createResponse(HttpStatus.OK);
+    Pageable pagina = PageRequest.of(pageNumber, pageSize);
+    List<Usuario> registros;
+    if (email == null) {
+      registros = usuarioService.findAll(pagina);
+    } else {
+      registros = usuarioService.findByEmail(email, pagina);
     }
+    List<UsuarioResponseDto> registrosDTO = mapper.fromEntity(registros);
 
-    @PostMapping()
-    public ResponseEntity<UsuarioResponseDto> create (@RequestBody UsuarioRequestDto usuario){
-        Usuario registro = usuarioService.save(mapper.registro(usuario));
-        return new WrapperResponse(true,"success",mapper.fromEntity(registro)).createResponse(HttpStatus.CREATED);
+    return new WrapperResponse(true, "success", registrosDTO).createResponse(HttpStatus.OK);
+  }
+
+  @PostMapping()
+  public ResponseEntity<UsuarioResponseDto> create(@RequestBody UsuarioRequestDto usuario) {
+    Usuario registro = usuarioService.save(mapper.registro(usuario));
+    return new WrapperResponse(true, "success", mapper.fromEntity(registro))
+        .createResponse(HttpStatus.CREATED);
+  }
+
+  @PutMapping(value = "/{id}")
+  public ResponseEntity<UsuarioResponseDto> update(
+      @PathVariable("id") int id, @RequestBody UsuarioRequestDto usuario) {
+    Usuario registro = usuarioService.update(mapper.registro(usuario));
+    if (registro == null) {
+      return ResponseEntity.notFound().build();
     }
+    return new WrapperResponse(true, "success", mapper.fromEntity(registro))
+        .createResponse(HttpStatus.OK);
+  }
 
-    @PutMapping(value="/{id}")
-    public ResponseEntity<UsuarioResponseDto> update(@PathVariable("id") int id, @RequestBody UsuarioRequestDto usuario){
-        Usuario registro=usuarioService.update(mapper.registro(usuario));
-        if(registro==null) {
-            return ResponseEntity.notFound().build();
-        }
-        return new WrapperResponse(true,"success",mapper.fromEntity(registro)).createResponse(HttpStatus.OK);
-    }
+  @DeleteMapping(value = "/{id}")
+  public ResponseEntity<UsuarioRequestDto> delete(@PathVariable("id") int id) {
+    usuarioService.delete(id);
+    return new WrapperResponse(true, "success", null).createResponse(HttpStatus.OK);
+  }
 
-    @DeleteMapping(value="/{id}")
-    public ResponseEntity<UsuarioRequestDto> delete(@PathVariable("id") int id){
-        usuarioService.delete(id);
-        return new WrapperResponse(true,"success",null).createResponse(HttpStatus.OK);
-    }
-
-    @PostMapping(value="/login")
-    public ResponseEntity<WrapperResponse<LoginResponseDto>> login(@RequestBody LoginRequestDto request){
-        LoginResponseDto response=usuarioService.login(request);
-        return new WrapperResponse<>(true,"success",response).createResponse(HttpStatus.OK);
-    }
-
+  @PostMapping(value = "/login")
+  public ResponseEntity<WrapperResponse<LoginResponseDto>> login(
+      @RequestBody LoginRequestDto request) {
+    LoginResponseDto response = usuarioService.login(request);
+    return new WrapperResponse<>(true, "success", response).createResponse(HttpStatus.OK);
+  }
 }

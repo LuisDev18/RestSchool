@@ -14,44 +14,44 @@ import java.util.Base64;
 @Component
 public class PemReader {
 
-    private static final String PRIVATE_KEY = "JWT_RS512_PRIVATE_KEY";
-    private static final String PUBLIC_KEY = "JWT_RS512_PUBLIC_KEY";
+  private static final String PRIVATE_KEY = "JWT_RS512_PRIVATE_KEY";
+  private static final String PUBLIC_KEY = "JWT_RS512_PUBLIC_KEY";
 
-    public PrivateKey getPrivateKey() {
-        String privatePemKey = System.getenv(PRIVATE_KEY)
-                .replace("-----BEGIN PRIVATE KEY-----", "")
-                .replace("-----END PRIVATE KEY-----", "")
-                .replaceAll("\\s", "");
+  public PrivateKey getPrivateKey() {
+    String privatePemKey =
+        System.getenv(PRIVATE_KEY)
+            .replace("-----BEGIN PRIVATE KEY-----", "")
+            .replace("-----END PRIVATE KEY-----", "")
+            .replaceAll("\\s", "");
 
-        byte[] binaryEncoded = Base64.getDecoder().decode(privatePemKey);
+    byte[] binaryEncoded = Base64.getDecoder().decode(privatePemKey);
 
-        try {
-            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-            PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(binaryEncoded);
-            return keyFactory.generatePrivate(spec);
+    try {
+      KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+      PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(binaryEncoded);
+      return keyFactory.generatePrivate(spec);
 
-        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-            throw new RuntimeException(e);
-        }
+    } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+      throw new RuntimeException(e);
     }
+  }
 
-    public PublicKey getPublicKey() {
-        String publicPemKey = System.getenv(PUBLIC_KEY)
-                .replace("-----BEGIN PUBLIC KEY-----", "")
-                .replace("-----END PUBLIC KEY-----", "")
-                .replaceAll("\\s", "");
+  public PublicKey getPublicKey() {
+    String publicPemKey =
+        System.getenv(PUBLIC_KEY)
+            .replace("-----BEGIN PUBLIC KEY-----", "")
+            .replace("-----END PUBLIC KEY-----", "")
+            .replaceAll("\\s", "");
 
-        byte[] binaryEncoded = Base64.getDecoder().decode(publicPemKey);
+    byte[] binaryEncoded = Base64.getDecoder().decode(publicPemKey);
 
-        try {
-            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-            X509EncodedKeySpec spec = new X509EncodedKeySpec(binaryEncoded);
-            return keyFactory.generatePublic(spec);
+    try {
+      KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+      X509EncodedKeySpec spec = new X509EncodedKeySpec(binaryEncoded);
+      return keyFactory.generatePublic(spec);
 
-        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-            throw new RuntimeException(e);
-        }
+    } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+      throw new RuntimeException(e);
     }
-
-
+  }
 }
