@@ -6,15 +6,14 @@ import utp.edu.pe.apirestschool.dto.UsuarioRequestDto;
 import utp.edu.pe.apirestschool.dto.UsuarioResponseDto;
 import utp.edu.pe.apirestschool.entity.Usuario;
 
-
 @Mapper(componentModel = "spring")
 public interface UsuarioMapper {
 
   UsuarioResponseDto fromEntity(Usuario usuario);
 
-  Usuario registro(UsuarioRequestDto usuarioRequestDto);
-
   List<UsuarioResponseDto> fromEntity(List<Usuario> entitys);
+
+  Usuario registro(UsuarioRequestDto usuarioRequestDto);
 
   Usuario fromDto(UsuarioResponseDto usuarioResponseDto);
 }
