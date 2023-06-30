@@ -30,50 +30,48 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Builder
 public class Usuario implements UserDetails {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    private String email;
+  private String email;
 
-    private String password;
+  private String password;
 
-    @Column(name = "activo", nullable = false)
-    private boolean activo;
+  @Column(name = "activo", nullable = false)
+  private boolean activo;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "rol", length = 20, nullable = false)
-    private Rol rol;
+  @Enumerated(EnumType.STRING)
+  @Column(name = "rol", length = 20, nullable = false)
+  private Rol rol;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ADMIN"));
         return authorities;
-    }
+  }
 
-    @Override
-    public String getUsername() {
+  @Override
+  public String getUsername() {
         return email;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
+  @Override
+  public boolean isAccountNonExpired() {return true;}
+
+  @Override
+  public boolean isAccountNonLocked() {
         return true;
     }
 
-    @Override
-    public boolean isAccountNonLocked() {
+  @Override
+  public boolean isCredentialsNonExpired() {
         return true;
     }
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
+  @Override
+  public boolean isEnabled() {
         return activo;
     }
 
