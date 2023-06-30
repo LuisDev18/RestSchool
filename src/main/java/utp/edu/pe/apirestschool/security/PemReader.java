@@ -1,7 +1,6 @@
 package utp.edu.pe.apirestschool.security;
 
 import org.springframework.stereotype.Component;
-
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
