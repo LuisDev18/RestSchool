@@ -19,10 +19,10 @@ import utp.edu.pe.apirestschool.mapper.UsuarioMapper;
 import utp.edu.pe.apirestschool.repository.UsuarioRepository;
 import utp.edu.pe.apirestschool.security.JWTService;
 import utp.edu.pe.apirestschool.service.UsuarioService;
-import utp.edu.pe.apirestschool.validator.UsuarioValidator;
-
 import java.util.List;
 import java.util.Optional;
+import utp.edu.pe.apirestschool.validator.UsuarioValidator;
+
 
 @Service
 @RequiredArgsConstructor
@@ -84,12 +84,12 @@ public class UsuarioServiceImpl implements UsuarioService {
   public Usuario update(Usuario usuario) {
     try {
       UsuarioValidator.save(usuario);
-      Usuario registroDB =
+      Usuario registroDb =
           usuarioRepository
               .findByEmail(usuario.getEmail())
               .orElseThrow(
                   () -> new NoDataFoundException("No existe el usuario para el email ingresado"));
-      if (registroDB != null && registroDB.getId() != usuario.getId()) {
+      if (registroDb != null && registroDb.getId() != usuario.getId()) {
         throw new ValidateServiceException(
             "Ya existe un registro con el email " + usuario.getEmail());
       }
