@@ -10,8 +10,8 @@ public class GeneralServiceException extends RuntimeException {
     super();
   }
 
-  public GeneralServiceException(String message, Throwable cause, boolean enableSuppression,
-                                   boolean writableStackTrace) {
+  public GeneralServiceException(
+      String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
     super(message, cause, enableSuppression, writableStackTrace);
   }
 
@@ -26,5 +26,4 @@ public class GeneralServiceException extends RuntimeException {
   public GeneralServiceException(Throwable cause) {
     super(cause);
   }
-
 }
