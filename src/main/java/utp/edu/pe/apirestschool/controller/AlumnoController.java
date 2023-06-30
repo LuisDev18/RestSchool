@@ -62,7 +62,7 @@ public class AlumnoController {
     AlumnoDto registroDto = AlumnoMapper.MAPPER.mappToDto(registro);
 
     Map<String, Object> map = new HashMap<String, Object>();
-    if (registroDto == null){
+    if (registroDto == null) {
       map.put("message", "No data found");
     } else {
       map.put("message", "Success");
