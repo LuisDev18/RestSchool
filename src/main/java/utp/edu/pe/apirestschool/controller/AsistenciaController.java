@@ -24,10 +24,7 @@ import utp.edu.pe.apirestschool.entity.Asistencia;
 import utp.edu.pe.apirestschool.mapper.AsistenciaMapper;
 import utp.edu.pe.apirestschool.service.AsistenciaService;
 
-@Tag(
-    name = "CRUD API REST para el modulo Asistencia ",
-    description =
-        "CRUD REST API")
+@Tag(name = "CRUD API REST para el modulo Asistencia ", description = "CRUD REST API")
 @RestController
 @RequestMapping("api/v1/asistencia")
 public class AsistenciaController {
@@ -44,11 +41,9 @@ public class AsistenciaController {
     Map<String, Object> map = new HashMap<String, Object>();
     if (asistenciasDto.toArray().length == 0) {
       map.put("message", "No data found");
-    }else map.put("message", "Success");
+    } else map.put("message", "Success");
     map.put("status", HttpStatus.OK);
     map.put("data", asistenciasDto);
-    // return new ResponseEntity(asistenciasDto,HttpStatus.OK);
-
     return new ResponseEntity<Object>(map, HttpStatus.OK);
   }
 
@@ -63,7 +58,6 @@ public class AsistenciaController {
     else map.put("message", "Success");
     map.put("status", HttpStatus.OK);
     map.put("data", registroDto);
-    // return new ResponseEntity(registroDto,HttpStatus.OK);
     return new ResponseEntity(map, HttpStatus.OK);
   }
 
@@ -82,7 +76,6 @@ public class AsistenciaController {
     map.put("message", "Success");
     map.put("status", HttpStatus.OK);
     map.put("data", registroDto);
-    // return ResponseEntity.status(HttpStatus.CREATED).body(registroDto);
     return new ResponseEntity(map, HttpStatus.CREATED);
   }
 
@@ -104,7 +97,6 @@ public class AsistenciaController {
     map.put("data", registroDto);
 
     return new ResponseEntity(map, HttpStatus.OK);
-    // return new ResponseEntity(registroDto,HttpStatus.OK);
   }
 
   @Operation(
@@ -122,6 +114,5 @@ public class AsistenciaController {
     map.put("status", HttpStatus.OK);
     map.put("data", null);
     return new ResponseEntity(map, HttpStatus.OK);
-    // return new ResponseEntity(null,HttpStatus.OK);
   }
 }

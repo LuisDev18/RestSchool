@@ -1,5 +1,6 @@
 package utp.edu.pe.apirestschool.controller;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -23,7 +24,6 @@ import utp.edu.pe.apirestschool.mapper.UsuarioMapper;
 import utp.edu.pe.apirestschool.service.UsuarioService;
 import utp.edu.pe.apirestschool.util.WrapperResponse;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/v1/usuarios")
@@ -45,9 +45,9 @@ public class UsuarioController {
     } else {
       registros = usuarioService.findByEmail(email, pagina);
     }
-    List<UsuarioResponseDto> registrosDTO = mapper.fromEntity(registros);
+    List<UsuarioResponseDto> registrosDto = mapper.fromEntity(registros);
 
-    return new WrapperResponse(true, "success", registrosDTO).createResponse(HttpStatus.OK);
+    return new WrapperResponse(true, "success", registrosDto).createResponse(HttpStatus.OK);
   }
 
   @PostMapping()

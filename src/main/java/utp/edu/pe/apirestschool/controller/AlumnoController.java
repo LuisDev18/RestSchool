@@ -4,6 +4,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +17,11 @@ import utp.edu.pe.apirestschool.mapper.AlumnoMapper;
 import utp.edu.pe.apirestschool.service.AlumnoService;
 import utp.edu.pe.apirestschool.util.WrapperResponse;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Tag(
     name = "CRUD API REST para el modulo Alumnos",
     description =
-        "CRUD REST API - Create Alumno, Update Alumno, Get Alumno, Get all Alumno, Delete Alumno")
+        "CRUD REST API")
 @RestController
 @RequestMapping("api/v1/alumnos")
 public class AlumnoController {
