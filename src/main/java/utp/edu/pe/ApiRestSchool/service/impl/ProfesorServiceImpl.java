@@ -78,6 +78,7 @@ public class ProfesorServiceImpl implements ProfesorService {
 
 			Profesor registro=profesorRepository.findById(profesor.getId())
 					.orElseThrow(()->new ResourceNotFoundException("profesor","id",Long.valueOf(profesor.getId())));
+
 			registro.setNombre(profesor.getNombre());
 			registro.setApellidoPaterno(profesor.getApellidoPaterno());
 			registro.setApellidoMaterno(profesor.getApellidoMaterno());

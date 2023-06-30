@@ -2,6 +2,7 @@ package utp.edu.pe.ApiRestSchool.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.boot.actuate.autoconfigure.observation.ObservationProperties;
@@ -74,10 +75,10 @@ public class ProfesorController {
 			summary = "Buscar Profesor por ID - API REST",
 			description="Permite buscar un profesor por ID en la base de datos"
 	)
-	@ApiResponse(
-			responseCode="200",
-			description = "HTTP STATUS 200 SUCCESS"
-	)
+	@ApiResponses(value={
+			@ApiResponse(responseCode="200", description = "HTTP STATUS 200 SUCCESS"),
+			@ApiResponse(responseCode = "404", description = "RESOURCE NOT FOUND")
+	})
 	@GetMapping(value="/{id}",produces="application/json")
 	public ResponseEntity<ProfesorDto> findById(@PathVariable("id") int id){
 		Profesor profesor=service.findById(id);
@@ -123,9 +124,10 @@ public class ProfesorController {
 			summary = "Eliminar Profesor -API REST",
 			description="Permite eliminar un profesor de la base de datos"
 	)
-	@ApiResponse(
-			responseCode="200",
-			description = "HTTP STATUS 200 CREATED"
+	@ApiResponses(value={
+		@ApiResponse(responseCode="200", description = "HTTP STATUS 200 SUCCESS"),
+			@ApiResponse(responseCode = "404", description = "RESOURCE NOT FOUND")
+	 }
 	)
 	@DeleteMapping(value="/{id}")
 	public ResponseEntity<String> delete(@PathVariable("id") int id){
