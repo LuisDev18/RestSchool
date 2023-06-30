@@ -56,7 +56,7 @@ public class AsistenciaController {
     AsistenciaDto registroDto = AsistenciaMapper.MAPPER.mappToDto(registro);
 
     Map<String, Object> map = new HashMap<String, Object>();
-    if (registroDto == null){
+    if (registroDto == null) {
       map.put("message", "No data found");
     } else {
       map.put("message", "Success");

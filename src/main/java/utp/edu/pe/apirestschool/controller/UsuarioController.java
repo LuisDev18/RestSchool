@@ -24,7 +24,6 @@ import utp.edu.pe.apirestschool.mapper.UsuarioMapper;
 import utp.edu.pe.apirestschool.service.UsuarioService;
 import utp.edu.pe.apirestschool.util.WrapperResponse;
 
-
 @RestController
 @RequestMapping("/v1/usuarios")
 @RequiredArgsConstructor
