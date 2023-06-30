@@ -33,4 +33,4 @@ build/
 .vscode/
 
 #Environments
-.env.keypair
+.env.Keypair
