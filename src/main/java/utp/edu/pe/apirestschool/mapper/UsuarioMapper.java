@@ -11,7 +11,10 @@ import utp.edu.pe.apirestschool.entity.Usuario;
 public interface UsuarioMapper {
 
   UsuarioResponseDto fromEntity(Usuario usuario);
+
   Usuario fromDto(UsuarioResponseDto usuarioResponseDto);
+
   Usuario registro(UsuarioRequestDto usuarioRequestDto);
+
   List<UsuarioResponseDto> fromEntity(List<Usuario> entitys);
 }

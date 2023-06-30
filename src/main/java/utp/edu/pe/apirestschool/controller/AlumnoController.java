@@ -42,8 +42,7 @@ public class AlumnoController {
     Map<String, Object> map = new HashMap<String, Object>();
     if (alumnosDto.toArray().length == 0) {
       map.put("message", "No data found");
-    }
-    else {
+    } else {
       map.put("message", "Success");
     }
     map.put("status", HttpStatus.OK);
@@ -65,8 +64,7 @@ public class AlumnoController {
     Map<String, Object> map = new HashMap<String, Object>();
     if (registroDto == null){
       map.put("message", "No data found");
-    }
-    else {
+    } else {
       map.put("message", "Success");
     }
     map.put("status", HttpStatus.OK);

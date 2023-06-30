@@ -11,5 +11,6 @@ public interface ProfesorMapper {
   ProfesorMapper MAPPER = Mappers.getMapper(ProfesorMapper.class);
 
   ProfesorDto mappToDto(Profesor profesor);
+
   Profesor mappToEntity(ProfesorDto profesorDto);
 }

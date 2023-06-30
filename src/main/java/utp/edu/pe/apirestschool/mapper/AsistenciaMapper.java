@@ -11,5 +11,6 @@ public interface AsistenciaMapper {
   AsistenciaMapper MAPPER = Mappers.getMapper(AsistenciaMapper.class);
 
   AsistenciaDto mappToDto(Asistencia asistencia);
+
   Asistencia mappToEntity(AsistenciaDto asistenciaDto);
 }
