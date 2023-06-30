@@ -47,18 +47,18 @@ public class Usuario implements UserDetails {
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ADMIN"));
-        return authorities;
+    List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+    authorities.add(new SimpleGrantedAuthority("ADMIN"));
+    return authorities;
   }
 
   @Override
   public String getUsername() {
-        return email;
-    }
+    return email;
+  }
 
   @Override
-  public boolean isAccountNonExpired() {return true;}
+  public boolean isAccountNonExpired() { return true;}
 
   @Override
   public boolean isAccountNonLocked() {
