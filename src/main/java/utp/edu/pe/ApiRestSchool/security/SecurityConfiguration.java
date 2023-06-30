@@ -1,3 +1,4 @@
+
 package utp.edu.pe.ApiRestSchool.security;
 
 import lombok.RequiredArgsConstructor;
@@ -41,4 +42,5 @@ public class SecurityConfiguration {
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
+
 }

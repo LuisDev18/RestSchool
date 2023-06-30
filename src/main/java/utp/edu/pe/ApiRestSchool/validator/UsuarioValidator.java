@@ -1,3 +1,4 @@
+
 package utp.edu.pe.ApiRestSchool.validator;
 
 import utp.edu.pe.ApiRestSchool.entity.Usuario;
@@ -21,4 +22,5 @@ public class UsuarioValidator {
             throw new ValidateServiceException("El rol es requerido");
         }
     }
+
 }

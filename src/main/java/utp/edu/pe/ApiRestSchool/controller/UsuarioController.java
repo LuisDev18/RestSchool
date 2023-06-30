@@ -1,3 +1,4 @@
+
 package utp.edu.pe.ApiRestSchool.controller;
 
 import lombok.RequiredArgsConstructor;
@@ -76,4 +77,5 @@ public class UsuarioController {
         LoginResponseDto response=usuarioService.login(request);
         return new WrapperResponse<>(true,"success",response).createResponse(HttpStatus.OK);
     }
+
 }

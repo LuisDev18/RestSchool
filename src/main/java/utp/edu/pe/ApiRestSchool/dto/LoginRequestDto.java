@@ -1,3 +1,4 @@
+
 package utp.edu.pe.ApiRestSchool.dto;
 
 import lombok.AllArgsConstructor;
@@ -14,4 +15,5 @@ import lombok.Setter;
 public class LoginRequestDto {
     private String email;
     private String password;
+
 }

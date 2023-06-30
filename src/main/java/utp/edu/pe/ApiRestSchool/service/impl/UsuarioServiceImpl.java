@@ -1,3 +1,4 @@
+
 package utp.edu.pe.ApiRestSchool.service.impl;
 
 import io.jsonwebtoken.JwtException;
@@ -164,4 +165,5 @@ public class UsuarioServiceImpl implements UsuarioService {
             throw new ValidateServiceException(e.getMessage());
         }
     }
+
 }

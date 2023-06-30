@@ -1,3 +1,4 @@
+
 package utp.edu.pe.ApiRestSchool.dto;
 
 import lombok.AllArgsConstructor;
@@ -15,4 +16,5 @@ public class UsuarioRequestDto {
     private String email;
     private String password;
     private String rol;
+
 }
