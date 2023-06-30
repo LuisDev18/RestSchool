@@ -1,9 +1,10 @@
 package utp.edu.pe.apirestschool.service;
 
+import java.util.List;
 import org.springframework.data.domain.Pageable;
 import utp.edu.pe.apirestschool.entity.Alumno;
 
-import java.util.List;
+
 
 public interface AlumnoService {
   public List<Alumno> findAll();
