@@ -13,16 +13,16 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 @Entity
-@Table(name="usuarios")
+@Table(name = "usuarios")
 @Setter
 @Getter
 @AllArgsConstructor
@@ -36,24 +36,21 @@ public class Usuario implements UserDetails {
 
     private String email;
 
-
     private String password;
 
-    @Column(name="activo",nullable = false)
+    @Column(name = "activo", nullable = false)
     private boolean activo;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="rol", length = 20,nullable=false)
+    @Column(name = "rol", length = 20, nullable = false)
     private Rol rol;
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<SimpleGrantedAuthority> authorities=new ArrayList<>();
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ADMIN"));
         return authorities;
     }
-
 
     @Override
     public String getUsername() {
