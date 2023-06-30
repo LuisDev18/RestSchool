@@ -10,6 +10,5 @@ public interface AlumnoMapper {
   AlumnoMapper MAPPER = Mappers.getMapper(AlumnoMapper.class);
 
   AlumnoDto mappToDto(Alumno alumno);
-
   Alumno mappToEntity(AlumnoDto alumnoDto);
 }

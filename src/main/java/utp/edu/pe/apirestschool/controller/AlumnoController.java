@@ -10,7 +10,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import utp.edu.pe.apirestschool.dto.AlumnoDto;
 import utp.edu.pe.apirestschool.entity.Alumno;
 import utp.edu.pe.apirestschool.mapper.AlumnoMapper;
@@ -33,8 +40,12 @@ public class AlumnoController {
     List<AlumnoDto> alumnosDto =
         service.findAll().stream().map(AlumnoMapper.MAPPER::mappToDto).toList();
     Map<String, Object> map = new HashMap<String, Object>();
-    if (alumnosDto.toArray().length == 0) map.put("message", "No data found");
-    else map.put("message", "Success");
+    if (alumnosDto.toArray().length == 0) {
+      map.put("message", "No data found");
+    }
+    else {
+      map.put("message", "Success");
+    }
     map.put("status", HttpStatus.OK);
     map.put("data", alumnosDto);
     // return new ResponseEntity(alumnosDto,HttpStatus.OK);
@@ -52,8 +63,12 @@ public class AlumnoController {
     AlumnoDto registroDto = AlumnoMapper.MAPPER.mappToDto(registro);
 
     Map<String, Object> map = new HashMap<String, Object>();
-    if (registroDto == null) map.put("message", "No data found");
-    else map.put("message", "Success");
+    if (registroDto == null){
+      map.put("message", "No data found");
+    }
+    else {
+      map.put("message", "Success");
+    }
     map.put("status", HttpStatus.OK);
     map.put("data", registroDto);
     return new ResponseEntity(map, HttpStatus.OK);
