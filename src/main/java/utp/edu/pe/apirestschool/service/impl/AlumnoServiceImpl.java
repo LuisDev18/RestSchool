@@ -4,13 +4,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import utp.edu.pe.apirestschool.entity.Alumno;
 import utp.edu.pe.apirestschool.exception.EmailAlreadyExistsException;
 import utp.edu.pe.apirestschool.exception.ResourceNotFoundException;
 import utp.edu.pe.apirestschool.repository.AlumnoRepository;
 import utp.edu.pe.apirestschool.service.AlumnoService;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Optional;
 
