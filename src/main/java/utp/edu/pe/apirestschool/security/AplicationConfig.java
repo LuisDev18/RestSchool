@@ -40,9 +40,9 @@ public class AplicationConfig {
     return authProvider;
   }
 
-  /*Este metodo es usado por spring security para analizar el tipo de autenticacion requerida
-  y de delegar al authenticationProvider que pueda manejar el tipo de autenticacion que se esta dando
-  jwt,nombre y contraseña, LDAP, etc.
+  /*Este metodo es usado por spring security para analizar el tipo de autenticacion
+  requerida y de delegar al authenticationProvider que pueda manejar el tipo de
+  autenticacion que se esta dando jwt,nombre y contraseña, LDAP, etc.
   */
   @Bean
   public AuthenticationManager authenticationManager(AuthenticationConfiguration config)

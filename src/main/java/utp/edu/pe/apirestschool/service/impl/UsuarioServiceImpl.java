@@ -19,7 +19,7 @@ import utp.edu.pe.apirestschool.exception.userexception.NoDataFoundException;
 import utp.edu.pe.apirestschool.exception.userexception.ValidateServiceException;
 import utp.edu.pe.apirestschool.mapper.UsuarioMapper;
 import utp.edu.pe.apirestschool.repository.UsuarioRepository;
-import utp.edu.pe.apirestschool.security.JWTService;
+import utp.edu.pe.apirestschool.security.JwtService;
 import utp.edu.pe.apirestschool.service.UsuarioService;
 import utp.edu.pe.apirestschool.validator.UsuarioValidator;
 
@@ -32,7 +32,7 @@ public class UsuarioServiceImpl implements UsuarioService {
   private final UsuarioRepository usuarioRepository;
   private final PasswordEncoder passwordEncoder;
   private final AuthenticationManager authenticationManager;
-  private final JWTService jwtService;
+  private final JwtService jwtService;
   private final UsuarioMapper usuarioMapper;
 
   @Override

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class JWTService {
+public class JwtService {
 
   private final PemReader pemReader;
   private final long accessTokenExpirationTime = 1000 * 60 * 24;
