@@ -41,7 +41,9 @@ public class AsistenciaController {
     Map<String, Object> map = new HashMap<String, Object>();
     if (asistenciasDto.toArray().length == 0) {
       map.put("message", "No data found");
-    } else map.put("message", "Success");
+    } else{
+      map.put("message", "Success");
+    }
     map.put("status", HttpStatus.OK);
     map.put("data", asistenciasDto);
     return new ResponseEntity<Object>(map, HttpStatus.OK);
@@ -54,8 +56,12 @@ public class AsistenciaController {
     AsistenciaDto registroDto = AsistenciaMapper.MAPPER.mappToDto(registro);
 
     Map<String, Object> map = new HashMap<String, Object>();
-    if (registroDto == null) map.put("message", "No data found");
-    else map.put("message", "Success");
+    if (registroDto == null){
+      map.put("message", "No data found");
+    }
+    else{
+      map.put("message", "Success");
+    }
     map.put("status", HttpStatus.OK);
     map.put("data", registroDto);
     return new ResponseEntity(map, HttpStatus.OK);
