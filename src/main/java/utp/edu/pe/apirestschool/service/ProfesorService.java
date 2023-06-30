@@ -1,7 +1,6 @@
 package utp.edu.pe.apirestschool.service;
 
 import java.util.List;
-
 import org.springframework.data.domain.Pageable;
 import utp.edu.pe.apirestschool.entity.Profesor;
 

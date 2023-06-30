@@ -1,11 +1,11 @@
 package utp.edu.pe.apirestschool.service;
 
+import java.util.List;
 import org.springframework.data.domain.Pageable;
 import utp.edu.pe.apirestschool.dto.LoginRequestDto;
 import utp.edu.pe.apirestschool.dto.LoginResponseDto;
 import utp.edu.pe.apirestschool.entity.Usuario;
 
-import java.util.List;
 
 public interface UsuarioService {
   public List<Usuario> findAll(Pageable page);
