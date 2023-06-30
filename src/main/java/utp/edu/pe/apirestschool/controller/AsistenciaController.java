@@ -1,14 +1,13 @@
 package utp.edu.pe.apirestschool.controller;
 
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.stream.Collectors;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import utp.edu.pe.apirestschool.dto.AsistenciaDto;
 import utp.edu.pe.apirestschool.entity.Asistencia;
 import utp.edu.pe.apirestschool.mapper.AsistenciaMapper;
@@ -29,7 +27,7 @@ import utp.edu.pe.apirestschool.service.AsistenciaService;
 @Tag(
     name = "CRUD API REST para el modulo Asistencia ",
     description =
-        "CRUD REST API - Create Asistencia, Update Asistencia, Get Asistencia, Get all Asistencias, Delete Asistencia")
+        "CRUD REST API")
 @RestController
 @RequestMapping("api/v1/asistencia")
 public class AsistenciaController {
@@ -44,8 +42,9 @@ public class AsistenciaController {
             .collect(Collectors.toList());
 
     Map<String, Object> map = new HashMap<String, Object>();
-    if (asistenciasDto.toArray().length == 0) map.put("message", "No data found");
-    else map.put("message", "Success");
+    if (asistenciasDto.toArray().length == 0) {
+      map.put("message", "No data found");
+    }else map.put("message", "Success");
     map.put("status", HttpStatus.OK);
     map.put("data", asistenciasDto);
     // return new ResponseEntity(asistenciasDto,HttpStatus.OK);
