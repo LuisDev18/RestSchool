@@ -24,7 +24,7 @@ import utp.edu.pe.apirestschool.entity.Asistencia;
 import utp.edu.pe.apirestschool.mapper.AsistenciaMapper;
 import utp.edu.pe.apirestschool.service.AsistenciaService;
 
-@Tag(name = "CRUD API REST para el modulo Asistencia ", description = "CRUD REST API")
+@Tag(name = "CRUD API REST para el modulo Asistencia ")
 @RestController
 @RequestMapping("api/v1/asistencia")
 public class AsistenciaController {

@@ -26,7 +26,7 @@ import utp.edu.pe.apirestschool.entity.Profesor;
 import utp.edu.pe.apirestschool.mapper.ProfesorMapper;
 import utp.edu.pe.apirestschool.service.ProfesorService;
 
-@Tag(name = "CRUD API REST para el modulo Profesor ", description = "CRUD REST API")
+@Tag(name = "CRUD API REST para el modulo Profesor ")
 @RestController
 @RequestMapping(value = "api/v1/profesor")
 public class ProfesorController {

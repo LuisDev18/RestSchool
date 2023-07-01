@@ -1,6 +1,8 @@
 package utp.edu.pe.apirestschool.controller;
 
 import java.util.List;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +26,7 @@ import utp.edu.pe.apirestschool.mapper.UsuarioMapper;
 import utp.edu.pe.apirestschool.service.UsuarioService;
 import utp.edu.pe.apirestschool.util.WrapperResponse;
 
+@Tag(name = "CRUD API REST para el modulo Usuario ")
 @RestController
 @RequestMapping("/v1/usuarios")
 @RequiredArgsConstructor
