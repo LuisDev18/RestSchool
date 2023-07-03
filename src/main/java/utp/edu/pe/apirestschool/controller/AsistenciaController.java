@@ -26,7 +26,7 @@ import utp.edu.pe.apirestschool.service.AsistenciaService;
 
 @Tag(name = "CRUD API REST para el modulo Asistencia ")
 @RestController
-@RequestMapping("api/v1/asistencia")
+@RequestMapping("/v1/asistencia")
 public class AsistenciaController {
   @Autowired private AsistenciaService service;
 
