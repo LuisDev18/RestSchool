@@ -26,7 +26,7 @@ import utp.edu.pe.apirestschool.util.WrapperResponse;
 
 @Tag(name = "CRUD API REST para el modulo Alumnos", description = "CRUD REST API")
 @RestController
-@RequestMapping("api/v1/alumnos")
+@RequestMapping("/v1/alumnos")
 public class AlumnoController {
 
   @Autowired private AlumnoService service;

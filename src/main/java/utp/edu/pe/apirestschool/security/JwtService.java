@@ -8,21 +8,28 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class JwtService {
 
   private final PemReader pemReader;
   private final long accessTokenExpirationTime = 1000 * 60 * 24;
   private final long refreshTokenExpirationTime = 1000 * 60 * 60 * 24;
 
-  public String extractUsername(String token) {
-    return extractClaim(token, Claims::getSubject);
-  }
+ /* public String extractUsername(String token) {
+    String username=extractClaim(token, Claims::getSubject);
+    log.info("username token:" + username);
+    return username;
+  }*/
+ public String extractUsername(String token) {
+   return extractClaim(token, claims -> claims.get("username", String.class));
+ }
 
   public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
     final Claims claims = extractAllClaims(token);
@@ -30,11 +37,13 @@ public class JwtService {
   }
 
   private Claims extractAllClaims(String token) {
-    return Jwts.parserBuilder()
+    Claims claims= Jwts.parserBuilder()
         .setSigningKey(pemReader.getPublicKey())
         .build()
         .parseClaimsJws(token)
         .getBody();
+    log.info("Claims from token: {}", claims);
+    return claims;
   }
 
   public String generateToken(UserDetails userDetails) {
