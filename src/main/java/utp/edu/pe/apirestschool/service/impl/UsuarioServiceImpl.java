@@ -11,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.yaml.snakeyaml.tokens.TagToken;
 import utp.edu.pe.apirestschool.dto.LoginRequestDto;
 import utp.edu.pe.apirestschool.dto.LoginResponseDto;
 import utp.edu.pe.apirestschool.entity.Usuario;
@@ -171,4 +172,6 @@ public class UsuarioServiceImpl implements UsuarioService {
       throw new ValidateServiceException(e.getMessage());
     }
   }
+
+
 }
