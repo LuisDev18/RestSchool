@@ -17,16 +17,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.asistenciaservice.dto.AlumnoDto;
+import com.example.asistenciaservice.dto.AlumnoResponseDto;
 import com.example.asistenciaservice.dto.AsistenciaDto;
 import com.example.asistenciaservice.entity.Asistencia;
 import com.example.asistenciaservice.mapper.AsistenciaMapper;
 import com.example.asistenciaservice.service.AsistenciaService;
+
+import org.springframework.web.reactive.function.client.WebClient;
 
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/v1/asistencia")
 public class AsistenciaController {
+	@Autowired private WebClient webClient;
 	@Autowired private AsistenciaService service;
 
 	  @GetMapping(value = "byEstudiante/{idEstudiante}")
@@ -44,7 +49,18 @@ public class AsistenciaController {
 	      map.put("message", "Success");
 	    }
 	    map.put("status", HttpStatus.OK);
-	    map.put("data", asistenciasDto);
+	    map.put("dataAsistencia", asistenciasDto);
+
+	    // Ejemplo de uso de WebClient
+	    AlumnoResponseDto response =
+	        webClient
+	            .get()
+	            .uri("http://localhost:8083/api/v1/alumnos")
+	            .retrieve()
+	            .bodyToMono(AlumnoResponseDto.class)
+	            .block();    
+	    	    
+	    map.put("dataAlumnos", response);
 	    return new ResponseEntity<Object>(map, HttpStatus.OK);
 	  }
 
