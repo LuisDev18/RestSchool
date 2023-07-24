@@ -1,10 +1,14 @@
 package com.example.asistenciaservice.controller;
 
+import com.example.asistenciaservice.dto.AlumnoResponseDto;
+import com.example.asistenciaservice.dto.AsistenciaDto;
+import com.example.asistenciaservice.entity.Asistencia;
+import com.example.asistenciaservice.mapper.AsistenciaMapper;
+import com.example.asistenciaservice.service.AsistenciaService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,17 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.asistenciaservice.dto.AlumnoDto;
-import com.example.asistenciaservice.dto.AlumnoResponseDto;
-import com.example.asistenciaservice.dto.AsistenciaDto;
-import com.example.asistenciaservice.entity.Asistencia;
-import com.example.asistenciaservice.mapper.AsistenciaMapper;
-import com.example.asistenciaservice.service.AsistenciaService;
-
 import org.springframework.web.reactive.function.client.WebClient;
-
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/v1/asistencia")
@@ -83,7 +77,7 @@ public class AsistenciaController {
 	  
 	  @PostMapping(produces = "application/json")
 	  public ResponseEntity<AsistenciaDto> saveAsistencia(
-	      @Valid @RequestBody AsistenciaDto asistenciaDto) {
+	       @RequestBody AsistenciaDto asistenciaDto) {
 	    Asistencia registro =
 	        service.saveAsistencia(AsistenciaMapper.MAPPER.mappToEntity(asistenciaDto));
 	    AsistenciaDto registroDto = AsistenciaMapper.MAPPER.mappToDto(registro);
@@ -98,7 +92,7 @@ public class AsistenciaController {
 	  @PutMapping(value = "/{idAsistencia}", produces = "application/json")
 	  public ResponseEntity<AsistenciaDto> updateAsistencia(
 	      @PathVariable("idAsistencia") int idAsistencia,
-	      @Valid @RequestBody AsistenciaDto asistenciaDto) {
+	      @RequestBody AsistenciaDto asistenciaDto) {
 	    Asistencia registro =
 	        service.updateAsistencia(AsistenciaMapper.MAPPER.mappToEntity(asistenciaDto));
 	    AsistenciaDto registroDto = AsistenciaMapper.MAPPER.mappToDto(registro);
